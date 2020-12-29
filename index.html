@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <script>
+
+    function calculate() {
+      var weight = document.getElementById("weight").value;
+      var concentration = document.getElementById("concentration").value;
+      var dose = document.getElementById("dose").value;
+      var frequency = document.getElementById("frequency").value;
+      var medicine = document.myform.master.value;
+
+      console.log(dose)
+      console.log(weight)
+      console.log(frequency)
+      var dose_of_medication = dose * weight;
+      console.log(eval(concentration))
+      var liquid_dose = dose_of_medication / eval(concentration);
+      var dose_administer = liquid_dose / frequency;
+
+
+
+      alert(dose_administer);
+    }
+
+    function updatemedicinedetails() {
+      var x = document.createElement("SELECT");
+      var b = document.myform.master.value;
+      console.log(b);
+      x.id = "concentration"
+      if (document.myform.master.value == "Amoxcillin") {
+        x.add(createoption("125/5"))
+        x.add(createoption("250/5"))
+      }
+      else if (document.myform.master.value == "Erythromycin") {
+        x.add(createoption("200/5"))
+      }
+      else if (document.myform.master.value == "Augmentin") {
+        x.add(createoption("400/5"))
+      }
+      else if (document.myform.master.value == "Cephalexin") {
+        x.add(createoption("125/5"))
+        x.add(createoption("250/5"))
+      }
+      else if (document.myform.master.value == "Metronidazole") {
+        x.add(createoption("200/5"))
+      }
+    document.getElementById("concentration").parentNode.replaceChild(x, document.getElementById("concentration"))
+
+    }
+    function createoption(value) {
+      var c = document.createElement("option")
+      c.text = value
+      c.value = value
+      return c
+
+    }
+  </script>
+</head>
+
+<body>
+
+  <label for="master">Please choose a medicine:</label>
+
+  <form name="myform">
+    <select onchange="updatemedicinedetails()" id="master" name="master" size="1">
+      <option value="Amoxcillin">Amoxcillin</option>
+      <option value="Erythromycin">Erythromycin</option>
+      <option value="Augmentin">Augmentin</option>
+      <option value="Cephalexin">Cephalexin</option>
+      <option value="Metronidazole">Metronidazole</option>
+    </select>
+    <br>
+  </form>
+
+  <label for="weight">Weight:</label>
+  <input type='value' id='weight' /><br>
+  <label for="concentration">Concentration:</label>
+  <form name="myform1">
+    <select id="concentration"name="concentration" size="1">
+      <option value="125/5">125/5</option>
+      <option value="250/5">250/5</option>
+    </select>
+    <br>
+  </form>
+  <label for="dose">Please specify a dose:</label>
+  <input type='value' id='dose' /><br>
+  <label for="frequency">How many times per day?:</label>
+  <input type='number' id='frequency'/><br>
+  <button onClick='calculate()'>Calculate Dosage</button>
+
+  <h5>Amoxcillin dose range: 25-50</h5>
+  <h5>Erythromycin dose range: 25-40</h5>
+  <h5>Augmentin dose range: 20-40</h5>
+  <h5>Cephalexin dose range: 25-50</h5>
+  <h5>Metronidazole dose range: 10-15</h5>
+
+</body>
+
+</html>
